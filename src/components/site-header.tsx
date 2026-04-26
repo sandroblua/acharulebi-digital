@@ -1,29 +1,36 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, MapPin, Menu as MenuIcon, X } from "lucide-react";
 import { useState } from "react";
-
-const navItems = [
-  { to: "/", label: "Home" },
-  { to: "/menu", label: "Menu" },
-  { to: "/about", label: "About" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/contact", label: "Visit" },
-] as const;
+import { useI18n } from "@/lib/i18n";
+import { LangToggle } from "@/components/lang-toggle";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { t } = useI18n();
+
+  const navItems = [
+    { to: "/", label: t("nav.home") },
+    { to: "/menu", label: t("nav.menu") },
+    { to: "/about", label: t("nav.about") },
+    { to: "/gallery", label: t("nav.gallery") },
+    { to: "/contact", label: t("nav.visit") },
+  ] as const;
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 md:px-8">
-        <Link to="/" className="group flex items-center gap-2">
-          <span className="font-display text-2xl font-semibold leading-none tracking-tight text-primary">
-            Acharulebi
-          </span>
-          <span className="hidden text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground sm:inline">
-            on Lagidze
-          </span>
-        </Link>
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 md:px-8">
+        {/* Left: language toggle + brand */}
+        <div className="flex items-center gap-4">
+          <LangToggle />
+          <Link to="/" className="group flex items-center gap-2">
+            <span className="font-display text-2xl font-semibold leading-none tracking-tight text-primary">
+              {t("brand.name")}
+            </span>
+            <span className="hidden text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground sm:inline">
+              {t("brand.tagline")}
+            </span>
+          </Link>
+        </div>
 
         <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
@@ -45,7 +52,7 @@ export function SiteHeader() {
             className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground shadow-soft transition-transform hover:-translate-y-0.5"
           >
             <Phone className="h-4 w-4" />
-            Call to reserve
+            {t("nav.callReserve")}
           </a>
         </div>
 
@@ -87,7 +94,7 @@ export function SiteHeader() {
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium"
             >
               <MapPin className="h-4 w-4" />
-              Get directions
+              {t("nav.directions")}
             </a>
           </nav>
         </div>
