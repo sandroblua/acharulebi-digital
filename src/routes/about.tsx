@@ -2,9 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SectionHeading } from "@/components/section";
-import interiorImg from "@/assets/interior.jpg";
+import interiorImg from "@/assets/interior-real.jpg";
 import eatingImg from "@/assets/eating.jpg";
 import feastImg from "@/assets/feast.jpg";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -25,6 +26,14 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const { t } = useI18n();
+
+  const values = [
+    { n: "01", t: t("ap.v1.t"), d: t("ap.v1.d") },
+    { n: "02", t: t("ap.v2.t"), d: t("ap.v2.d") },
+    { n: "03", t: t("ap.v3.t"), d: t("ap.v3.d") },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -35,7 +44,7 @@ function AboutPage() {
         <div className="relative mx-auto max-w-4xl px-4 py-32 text-center md:px-8 md:py-44" style={{ color: "var(--cream)" }}>
           <span className="font-script text-2xl" style={{ color: "var(--gold)" }}>აჭარულები ლაღიძეზე</span>
           <h1 className="mt-3 font-display text-5xl font-semibold leading-tight text-balance md:text-7xl">
-            A Tbilisi tradition,<br />still served warm.
+            {t("ap.h1.l1")}<br />{t("ap.h1.l2")}
           </h1>
         </div>
       </section>
@@ -45,26 +54,14 @@ function AboutPage() {
           <div className="md:col-span-3">
             <SectionHeading
               align="left"
-              eyebrow="Our Story"
-              title="From Soviet-era Tbilisi to today"
-              description="Acharulebi on Lagidze was born in an era when Tbilisi was a city of poets, fountains, and Mitrofan Lagidze's famous mineral waters. We took our name from that street and that spirit — and we've been feeding the neighborhood ever since."
+              eyebrow={t("ap.eyebrow")}
+              title={t("ap.title")}
+              description={t("ap.desc")}
             />
             <div className="mt-8 space-y-6 text-base leading-relaxed text-foreground/85">
-              <p>
-                Our underground dining room has barely changed in decades. Brick arches,
-                white tablecloths, the soft clink of glasses, and the unmistakable smell of
-                fresh khachapuri pulled from a stone oven. Some guests have been coming
-                here since they were children. Many bring their own children now.
-              </p>
-              <p>
-                We are not a tourist trap. We are not trying to be modern. We are simply
-                trying to do one thing extraordinarily well — serve the food that Georgia
-                has loved for centuries, at a price a working family can afford.
-              </p>
-              <p>
-                If you're visiting Tbilisi for the first time and a local tells you to come
-                here, listen to them. If you've lived here all your life, you already know.
-              </p>
+              <p>{t("ap.p1")}</p>
+              <p>{t("ap.p2")}</p>
+              <p>{t("ap.p3")}</p>
             </div>
           </div>
 
@@ -79,13 +76,9 @@ function AboutPage() {
 
       <section className="bg-gradient-parchment texture-paper py-24 md:py-32">
         <div className="mx-auto max-w-6xl px-4 md:px-8">
-          <SectionHeading eyebrow="What we believe in" title="Three things we'll never change" />
+          <SectionHeading eyebrow={t("ap.values.eyebrow")} title={t("ap.values.title")} />
           <div className="mt-14 grid gap-10 md:grid-cols-3">
-            {[
-              { n: "01", t: "Authenticity over fashion", d: "Our recipes are old. We trust them. The dough is hand-kneaded, the cheese is real Georgian sulguni, the dumplings are folded by hand every morning." },
-              { n: "02", t: "Affordable, always", d: "10 to 20 GEL per person, full stop. A neighborhood restaurant should be a place anyone can afford to come back to." },
-              { n: "03", t: "A warm welcome", d: "Whether you're a regular of thirty years or you wandered in tonight from Rustaveli Avenue, you'll be treated the same way: like family." },
-            ].map((p) => (
+            {values.map((p) => (
               <div key={p.n} className="rounded-2xl bg-card p-8 shadow-card">
                 <div className="font-script text-4xl text-primary">{p.n}</div>
                 <h3 className="mt-3 font-display text-2xl font-semibold">{p.t}</h3>
