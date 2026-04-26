@@ -29,14 +29,12 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Acharulebi on Lagidze — Authentic Georgian Restaurant in Tbilisi" },
+      { name: "description", content: "Authentic Adjarian khachapuri, khinkali, and Lagidze waters on Rustaveli Avenue, Tbilisi. A local favorite for generations." },
+      { name: "keywords", content: "best khachapuri Tbilisi, Georgian restaurant Rustaveli, Adjarian khachapuri, Lagidze water, Tbilisi food" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: "Acharulebi on Lagidze" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
