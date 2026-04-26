@@ -4,12 +4,13 @@ import { SiteFooter } from "@/components/site-footer";
 import { SectionHeading } from "@/components/section";
 import heroImg from "@/assets/hero-khachapuri.jpg";
 import dumplingsImg from "@/assets/dumplings.jpg";
-import lagidzeImg from "@/assets/lagidze.jpg";
-import interiorImg from "@/assets/interior.jpg";
+import lagidzeImg from "@/assets/lagidze-waters.png";
+import interiorImg from "@/assets/interior-real.jpg";
 import eatingImg from "@/assets/eating.jpg";
 import feastImg from "@/assets/feast.jpg";
 import soupImg from "@/assets/soup.jpg";
 import badrijaniImg from "@/assets/badrijani.jpg";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -41,6 +42,7 @@ const photos = [
 ];
 
 function GalleryPage() {
+  const { t } = useI18n();
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -48,9 +50,9 @@ function GalleryPage() {
       <section className="border-b border-border bg-gradient-parchment py-20 md:py-28">
         <div className="mx-auto max-w-4xl px-4 text-center md:px-8">
           <SectionHeading
-            eyebrow="Gallery"
-            title="Cheese, candlelight, and Lagidze fizz"
-            description="A few moments from the room. The food is even better in person."
+            eyebrow={t("gal.eyebrow")}
+            title={t("gal.title")}
+            description={t("gal.desc")}
           />
         </div>
       </section>
@@ -69,7 +71,7 @@ function GalleryPage() {
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-charred/90 to-transparent p-4 text-sm font-medium text-cream opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100" style={{ color: "var(--cream)" }}>
+                <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-charred/90 to-transparent p-4 text-sm font-medium opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100" style={{ color: "var(--cream)" }}>
                   {p.alt}
                 </figcaption>
               </figure>

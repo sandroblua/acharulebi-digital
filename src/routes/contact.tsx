@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SectionHeading } from "@/components/section";
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -21,6 +22,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const { t } = useI18n();
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -28,9 +30,9 @@ function ContactPage() {
       <section className="bg-gradient-parchment py-20 md:py-28">
         <div className="mx-auto max-w-4xl px-4 text-center md:px-8">
           <SectionHeading
-            eyebrow="Find Us"
-            title="On Rustaveli Avenue, just downstairs"
-            description="Walk in or call ahead — we keep things simple."
+            eyebrow={t("ct.eyebrow")}
+            title={t("ct.title")}
+            description={t("ct.desc")}
           />
         </div>
       </section>
@@ -41,25 +43,25 @@ function ContactPage() {
             <div className="space-y-4">
               <ContactCard
                 icon={<MapPin className="h-5 w-5" />}
-                title="Address"
-                lines={["24 Shota Rustaveli Avenue", "Tbilisi, Georgia"]}
-                action={{ href: "https://maps.google.com/?q=24+Shota+Rustaveli+Avenue+Tbilisi", label: "Open in Maps" }}
+                title={t("ct.address")}
+                lines={[t("ct.addr.l1"), t("ct.addr.l2")]}
+                action={{ href: "https://maps.google.com/?q=24+Shota+Rustaveli+Avenue+Tbilisi", label: t("ct.openMaps") }}
               />
               <ContactCard
                 icon={<Phone className="h-5 w-5" />}
-                title="Phone"
+                title={t("ct.phone")}
                 lines={["+995 514 64 56 45"]}
-                action={{ href: "tel:+995514645645", label: "Tap to call" }}
+                action={{ href: "tel:+995514645645", label: t("ct.tapCall") }}
               />
               <ContactCard
                 icon={<Clock className="h-5 w-5" />}
-                title="Hours"
-                lines={["Open every day", "Until 10:00 PM"]}
+                title={t("ct.hours")}
+                lines={[t("ct.hours.l1"), t("ct.hours.l2")]}
               />
               <ContactCard
                 icon={<Navigation className="h-5 w-5" />}
-                title="Getting here"
-                lines={["2 min from Rustaveli Metro", "Look for the staircase down"]}
+                title={t("ct.getting")}
+                lines={[t("ct.get.l1"), t("ct.get.l2")]}
               />
             </div>
           </div>
